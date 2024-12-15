@@ -1,0 +1,526 @@
+<div class="container-fluid container-fluid-custom pb-5 mb-5">
+
+  <div class="row mb-4">
+    
+   <div class="col">
+      <h1>Hey, <%= userName %>!</h1>
+      
+    </div>
+    <div class="col text-end">
+      <a href="/dashboard/add" class="btn btn-primary">+ New Playbook</a>
+      <div class="btn-container">
+       
+      </div>
+    </div>
+
+   
+  </div>
+
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playbook Dashboard</title>
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Oswald:300,400,500,700");
+      @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800");
+  
+      .gr-1 {
+        background: linear-gradient(170deg, #01E4F8 0%, #1D3EDE 100%);
+      }
+  
+      .gr-2 {
+        background: linear-gradient(170deg, #B4EC51 0%, #429321 100%);
+      }
+  
+      .gr-3 {
+        background: linear-gradient(170deg, #C86DD7 0%, #3023AE 100%);
+      }
+  
+      * {
+        transition: 0.5s;
+      }
+  
+      .h-100 {
+        height: 100vh !important;
+      }
+  
+      .align-middle {
+        position: relative;
+        top: 25%;
+        transform: translateY(-50%);
+      }
+  
+      .column {
+        margin-top: 3rem;
+        padding-left: 3rem;
+      }
+  
+      .column:hover {
+        padding-left: 0;
+      }
+  
+      .column:hover .card .txt {
+        margin-left: 1rem;
+      }
+  
+      .column:hover .card .txt h1, .column:hover .card .txt p {
+        color: white;
+        opacity: 1;
+      }
+  
+      .column:hover a {
+        color: white;
+      }
+  
+      .column:hover a:after {
+        width: 10%;
+      }
+  
+      .card {
+    min-height: 170px; /* Keeps the minimum height */
+   
+    height: 250px; /* Set a consistent height for all cards */
+    margin: 0;
+    padding: 1.7rem 1.2rem;
+    border: none;
+    border-radius: 0;
+    color: black;
+    letter-spacing: 0.05rem;
+    font-family: "Oswald", sans-serif;
+    box-shadow: 0 0 21px rgba(0, 0, 0, 0.27);
+    display: flex; /* Use flex to ensure content alignment */
+    flex-direction: column; /* Align items vertically */
+    justify-content: space-between; /* Distribute space evenly */
+  }
+  
+      .card .txt {
+        margin-left: -3rem;
+        z-index: 1;
+      }
+  
+      .card .txt h1 {
+        font-size: 1.5rem;
+        font-weight: 300;
+        text-transform: uppercase;
+      }
+  
+      .card .txt p {
+        font-size: 0.7rem;
+        font-family: "Open Sans", sans-serif;
+        letter-spacing: 0rem;
+        margin-top: 33px;
+        opacity: 0;
+        color: white;
+      }
+  
+      .card a {
+        z-index: 3;
+        font-size: 0.7rem;
+        color: black;
+        margin-left: 1rem;
+        position: relative;
+        bottom: -0.5rem;
+        text-transform: uppercase;
+      }
+  
+      .card a:after {
+        content: "";
+        display: inline-block;
+        height: 0.5em;
+        width: 0;
+        margin-right: -100%;
+        margin-left: 10px;
+        border-top: 1px solid white;
+        transition: 0.5s;
+      }
+  
+      .card .ico-card {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+  
+      .card i {
+        position: relative;
+        right: -50%;
+        top: 60%;
+        font-size: 12rem;
+        line-height: 0;
+        opacity: 0.2;
+        color: white;
+        z-index: 0;
+      }
+
+      
+    </style>
+    
+  </head>
+  <body>
+    <div class="container h-100">
+      <div class="row align-middle">
+        <% if (playbooks.length > 0) { 
+          for(var i=0; i < playbooks.length; i++) { %>
+            <div class="col-md-6 col-lg-4 column">
+              <div class="card gr-<%= (i % 3) + 1 %>">
+                <div class="txt">
+                  <h1><%= playbooks[i].title %></h1>
+                  <p><%= playbooks[i].body %></p>
+                </div>
+                <a href="/dashboard/item/<%= playbooks[i]._id %>">more</a>
+                <div class="ico-card">
+                  <i class="fa <%= (i % 3 === 0) ? 'fa-rebel' : (i % 3 === 1) ? 'fa-codepen' : 'fa-empire' %>"></i>
+                </div>
+              </div>
+            </div>
+            
+        <% } } else  { %>
+          <link href="https://fonts.googleapis.com/css2?family=Iceland&display=swap" rel="stylesheet">
+          <div class="row">
+            <div class="col-3">
+              <img src="/img/rax.png" alt="Human pointing hand toward a create button">
+            </div>
+            <div class="col mt-md-4">
+              <h2>It looks like you haven't created any playbooks yet.</h2>
+              <h4>Start by creating your first playbook now!<br/><br/>
+                <a href="/dashboard/add" class="btn btn-success">Create Your First Playbook</a>
+                <a href="/dashboard/RakshaSutraPlaybook" class="btn custom-button">View Standard RakshaSutra Playbooks</a>
+              </h4>
+            </div>
+          </div>
+        <% } %>
+        <% if(playbooks.length > 0) { %>
+          <nav aria-label="Page navigation">
+            <div class="pagination-container">
+              <ul class="pagination">
+                <!-- First Button -->
+                <% if (current == 1) { %>
+                  <li class="page-item disabled">
+                    <a class="page-link rounded-pill first-last" href="#">First</a>
+                  </li>
+                <% } else { %>
+                  <li class="page-item">
+                    <a class="page-link rounded-pill first-last" href="/dashboard/?page=1">First</a>
+                  </li>
+                <% } %>
+          
+                <!-- Previous Button -->
+                <% if (current == 1) { %>
+                  <li class="page-item disabled">
+                    <a class="page-link arrow" href="#">&#8592;</a>
+                  </li>
+                <% } else { %>
+                  <li class="page-item">
+                    <a class="page-link arrow" href="/dashboard/?page=<%= current - 1 %>">&#8592;</a>
+                  </li>
+                <% } %>
+          
+                <!-- Page Numbers -->
+                <% var startPage = current > 5 ? current - 4 : 1; %>
+                <% if (startPage !== 1) { %>
+                  <li class="page-item disabled"><span class="page-link">...</span></li>
+                <% } %>
+                <% for (var i = startPage; i <= Math.min(startPage + 4, pages); i++) { %>
+                  <% if (i === current) { %>
+                    <li class="page-item active">
+                      <span class="page-link"><%= i %></span>
+                    </li>
+                  <% } else { %>
+                    <li class="page-item">
+                      <a class="page-link" href="/dashboard/?page=<%= i %>"><%= i %></a>
+                    </li>
+                  <% } %>
+                <% } %>
+                <% if (startPage + 4 < pages) { %>
+                  <li class="page-item disabled"><span class="page-link">...</span></li>
+                <% } %>
+          
+                <!-- Next Button -->
+                <% if (current == pages) { %>
+                  <li class="page-item disabled">
+                    <a class="page-link arrow" href="#">&#8594;</a>
+                  </li>
+                <% } else { %>
+                  <li class="page-item">
+                    <a class="page-link arrow" href="/dashboard/?page=<%= current + 1 %>">&#8594;</a>
+                  </li>
+                <% } %>
+          
+                <!-- Last Button -->
+                <% if (current == pages) { %>
+                  <li class="page-item disabled">
+                    <a class="page-link rounded-pill first-last" href="#">Last</a>
+                  </li>
+                <% } else { %>
+                  <li class="page-item">
+                    <a class="page-link rounded-pill first-last" href="/dashboard/?page=<%= pages %>">Last</a>
+                  </li>
+                <% } %>
+              </ul>
+            </div>
+          </nav>
+          <a href="/dashboard/RakshaSutraPlaybook" class="btn custom-button">View Standard RakshaSutra Playbooks</a>
+          <style>
+            .custom-button {
+              
+              display: inline-block;
+              padding: 12px 30px;
+              font-size: 1.1rem;
+              color: white;
+              background: linear-gradient(45deg, #ff6f61, #ffcc00, #ff6f61, #4cae4c);
+              border: 2px solid transparent;
+              border-radius: 50px;
+              text-align: center;
+              text-decoration: none;
+              box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+              transition: transform 0.3s ease, background-position 0.5s ease, box-shadow 0.3s ease;
+              margin-bottom: -100px; /* Move the button further down */
+              background-size: 400% 400%; /* Make the gradient move more */
+            }
+          
+            .custom-button:hover {
+              animation: gradientFlow 5s ease-in-out infinite, pulse 1s infinite alternate; /* Continuous gradient animation + pulsating effect */
+              border: 2px solid #ffcc00;
+              transform: scale(1.1) rotate(5deg); /* Scaling and slight rotation on hover */
+              box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3); /* Stronger shadow effect */
+            }
+          
+            /* Keyframes for gradient flow effect */
+            @keyframes gradientFlow {
+              0% {
+                background-position: 0% 50%;
+              }
+              50% {
+                background-position: 100% 50%;
+              }
+              100% {
+                background-position: 0% 50%;
+              }
+            }
+          
+            /* Keyframes for the pulsating effect */
+            @keyframes pulse {
+              0% {
+                transform: scale(1);
+              }
+              100% {
+                transform: scale(1.15);
+              }
+            }
+          </style>
+          
+
+          </style>
+
+          <style>
+          /* Pagination Container */
+          .pagination-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px 0; /* Reduced margin */
+            background-color: #111111; /* Match dark background */
+            border-radius: 30px; /* Reduced border radius */
+            padding: 8px 12px; /* Reduced padding to lower the card size */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Smaller shadow */
+            width: 745px; /* Make background width auto to fit the buttons */
+            margin-left: auto;
+            margin-right: auto;
+            margin: auto;
+            margin-top: 55px;
+          }
+          
+          /* Pagination List */
+          .pagination {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            justify-content: center; /* Center all the buttons */
+          }
+          
+          /* Pagination Items */
+          .pagination .page-item {
+            margin: 0 5px; /* Removed margin between buttons */
+          }
+          
+          /* Pagination Links */
+          .pagination .page-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px; /* Reduced button width */
+            height: 50px; /* Reduced button height */
+            border-radius: 50%;
+            background-color: black;
+            color: white;
+            font-size: 1.4rem; /* Slightly reduced text size */
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.3); /* Reduced shadow size */
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            margin: 0; /* Ensure no space between buttons */
+          }
+          
+          /* First/Last Button (Rectangular) */
+          .pagination .page-link.first-last {
+            border-radius: 20px; /* Slightly smaller radius */
+            padding: 0 15px; /* Adjusted padding */
+            font-size: 1.1rem; /* Reduced font size */
+            width: 120px; /* Adjusted width */
+            height: 50px; /* Adjusted height */
+            text-align: center;
+          }
+          
+          /* Hover Effect */
+          .pagination .page-link:hover {
+            background-color: white;
+            color: black;
+            transform: scale(1.1);
+          }
+          
+          /* Active Page */
+          .pagination .page-item.active .page-link {
+            background-color: white;
+            color: black;
+            transform: scale(1.1);
+          }
+          
+          /* Disabled Pages */
+          .pagination .page-item.disabled .page-link {
+            background-color: #444;
+            color: gray;
+            pointer-events: none;
+          }
+          </style>
+          
+          </style>
+      
+
+        <% } %>
+        <style>
+          .row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-top: 20px;
+          }
+        
+          .col-3 img {
+            width: 300%; /* Adjusted to make the image larger and take up more than half the width */
+            max-height:800px; /* Adjusted to increase the height */
+            border-radius: 15px;
+            transition: transform 0.3s ease-in-out;
+            margin-left: -350px; /* Adjusts image to be more to the left */
+            margin-bottom: -350px; /* Adjusts image to be more to the left */
+          }
+        
+          .col-3 img:hover {
+            transform: scale(1.1);
+          }
+        
+          .col {
+            padding: 20px;
+            text-align: center;
+          }
+         
+        
+      h4, h2 {
+        font-family: "Iceland", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+  
+        
+          h2 {
+            color: #000001;
+            font-size: 3rem;
+            margin-bottom: 100px;
+            margin-left: 100px;
+          }
+        
+          h4 {
+            color: #f1ea7e;
+            font-size: 1.70rem;
+            margin-bottom: -130px;
+            margin-left: 100px;
+          }
+          .btn-success {
+            background-color: #28a745;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+          }
+        
+          .btn-success:hover {
+            background-color: #c39817;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+          }
+        
+          .btn-success:active {
+            background-color: #1e7e34;
+            transform: translateY(1px);
+          }
+        </style>
+  
+  
+  
+        
+  
+      </div>
+    </div>
+  </body>
+  </html>
+  
+  
+  
+
+</div>
+
+
+
+
+
+<style>
+  /* Custom styles for the button */
+  .custom-button {
+    padding: 12px 24px;
+    font-size: 16px;
+    text-transform: uppercase;
+    border-radius: 8px;
+    background-color: #007bff; /* Default background color */
+    color: white; /* Text color */
+    border: 2px solid #007bff; /* Border color */
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+  }
+
+  /* Hover effect for the button */
+  .custom-button:hover {
+    background-color: #0056b3; /* Darker background on hover */
+    border-color: #0056b3; /* Darker border on hover */
+    transform: scale(1.05); /* Slight zoom effect */
+  }
+
+  /* Focus effect */
+  .custom-button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.6); /* Subtle glow effect */
+  }
+</style>

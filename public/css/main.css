@@ -1,0 +1,216 @@
+:root {
+  --background-color: #FFC700; /* Dark yellow background */
+  --bs-primary-rgb: #000000; /* Deep blue for primary color */
+  --footer-bg: #1F2833; /* Footer background */
+  --footer-text: #E0E0E0; /* Light gray for footer text */
+  --footer-link: #C4A300; /* Darker yellow for footer links */
+  --footer-hover: #D35400; /* Warm orange for footer hover */
+  --heading-color: #2C2C2C; /* Dark gray for headings */
+  --text-color: #0a0a0a; /* Medium dark gray for body text */
+  --link-color: #004080; /* Deep blue for links */
+  --link-hover-color: #002F5E; /* Darker shade of primary color for link hover */
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  color: var(--bs-primary-rgb);
+  font-weight: 300;
+  font-size: 1.2rem;
+  background-image: 
+    linear-gradient(to right, rgba(255, 199, 0, 0.7), rgba(90, 58, 0, 0.7), rgba(26, 26, 26, 0.7)),
+    url('/img/bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Unbounded', cursive;
+  font-weight: 800;
+}
+
+.container-fluid-custom {
+  max-width: 1600px;
+}
+
+/* Button */
+.btn {
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  border-radius: 2rem;
+}
+
+.btn-primary {
+  --bs-btn-color: #f0f0f0; /* Light gray color for text */
+  --bs-btn-bg: #b89d00; /* Dark yellow background */
+  --bs-btn-border-color: #b89d00; /* Match button border with background */
+  --bs-btn-hover-color: #fff; /* White text when hovered */
+  --bs-btn-hover-bg: #8a7e00; /* Slightly darker yellow for hover */
+  --bs-btn-hover-border-color: #8a7e00; /* Match hover border */
+  --bs-btn-focus-shadow-rgb: 49, 132, 253;
+  --bs-btn-active-color: #fff; /* White text when active */
+  --bs-btn-active-bg: #a1a100; /* A shade of yellow for active state */
+  --bs-btn-active-border-color: #a1a100; /* Match active border */
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #d4d4d4; /* Light gray for disabled state */
+  --bs-btn-disabled-bg: #b89d00; /* Match disabled background */
+  --bs-btn-disabled-border-color: #d4d4d4; /* Light gray border for disabled */
+}
+
+.btn-outline-primary {
+  --bs-btn-color: #b89d00; /* Dark yellow text */
+  --bs-btn-border-color: #b89d00; /* Dark yellow border */
+  --bs-btn-hover-color: #fff; /* White text when hovered */
+  --bs-btn-hover-bg: #b89d00; /* Dark yellow background */
+  --bs-btn-hover-border-color: #8a7e00; /* Slightly darker yellow for hover */
+  --bs-btn-focus-shadow-rgb: 13, 110, 253;
+  --bs-btn-active-color: #fff; /* White text when active */
+  --bs-btn-active-bg: #a1a100; /* A shade of yellow for active state */
+  --bs-btn-active-border-color: #a1a100; /* Match active border */
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #b89d00; /* Dark yellow for disabled text */
+  --bs-btn-disabled-bg: transparent; /* Transparent background */
+  --bs-btn-disabled-border-color: #b89d00; /* Dark yellow border for disabled */
+  --bs-gradient: none;
+}
+
+
+.pagination {
+  --bs-pagination-color: var(--bs-primary-rgb);
+  --bs-pagination-active-bg: var(--bs-primary-rgb);
+  --bs-pagination-active-border-color: var(--bs-primary-rgb);
+}
+
+/* Home */
+ /* @media (min-width: 1200px) {
+  .home {
+      background: 
+          url('../img/addon2.png') left center no-repeat,
+          url('/img/hacker.png') right center no-repeat,
+          url('../img/noise-b.png') left top repeat,
+          var(--background-color);
+  }
+}  */
+
+.home-title::before {
+  content: url('../img/stars.svg');
+  position: absolute;
+  left: -50px;
+  top: -30px;
+}
+
+.home-title::after {
+  content: url('../img/stars.svg');
+  position: absolute;
+  right: -50px;
+  bottom: -30px;
+}
+
+/* Footer */
+footer {
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
+  padding: 20px;
+  border-top: 3px solid var(--footer-link);
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: var(--footer-link);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: var(--footer-hover);
+}
+
+footer ul.nav {
+  gap: 15px;
+}
+
+footer ul.nav .nav-link {
+  padding: 0.3rem 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+footer ul.nav .nav-link:hover {
+  background-color: #0B0C10; /* Subtle hover effect */
+  color: var(--footer-hover);
+}
+
+footer.text-end {
+  text-align: right;
+}
+
+/* Header logo */
+.custom-logo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  font-family: 'Lakki Reddy', cursive;
+}
+
+.custom-logo::before {
+  content: '';
+  position: absolute;
+  left: -50px; /* Adjust this value to move the logo horizontally */
+  top: 50%; /* Adjust this to position it vertically */
+  transform: translateY(-50%); /* Center the image vertically */
+  width: 40px; /* Adjust this to control the logo size */
+  height: 40px; /* Adjust this to control the logo size */
+  background: url('/img/screenshot.png') no-repeat center center;
+  background-size: contain; /* Ensure the image scales within the box */
+}
+
+/* Make the search input much larger with equal rounded edges on both sides */
+.search-bar input {
+  width: 500px; /* Increase the width even more */
+  padding: 1rem 1.5rem; /* Increase the padding to make the input taller */
+  font-size: 1.2rem; /* Increase font size for better readability */
+  border-top-left-radius: 0.25rem; /* Rounded top-left corner */
+  border-bottom-left-radius: 0.25rem; /* Rounded bottom-left corner */
+  border-top-right-radius: 0.25rem; /* Rounded top-right corner */
+  border-bottom-right-radius: 0.25rem; /* Rounded bottom-right corner */
+  border-color: var(--bs-primary-rgb);
+  box-shadow: none;
+  height: 50px; /* Increase the height of the search box */
+}
+
+/* Adjust the button sizes to match */
+.search-bar .btn {
+  height: 50px; /* Ensure the buttons are the same height */
+  padding: 0 1.5rem;
+  border-radius: 0 0.25rem 0.25rem 0; /* Round only the right corners */
+}
+/* Ensure the search button background is white */
+.search-btn {
+  background-color: #fff;  /* White background */
+  border: 1px solid #12296c;  /* Same border color as the search box */
+  border-radius: 50%;  /* Keep the button circular */
+}
+
+/* Ensure the cancel button background is white */
+.cancel-btn {
+  background-color: #fff;  /* White background */
+  border: 1px solid #12296c;  /* Same border color as the search box */
+  border-radius: 50%;  /* Keep the button circular */
+}
+
+/* Remove partition between search input and button */
+.search-bar .input-group-append,
+.search-bar .input-group-prepend {
+  border: none;  /* Remove the partition between the input and button */
+}
+
+/* Optional: Add a hover effect for the search button */
+.search-btn:hover, .cancel-btn:hover {
+  background-color: #f0e5b0;  /* Light background color on hover */
+}
+
+

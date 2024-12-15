@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ - RakshaSutra Incident Response Playbook</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    /* Container for FAQ */
+    .faq-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 50px 20px;
+    }
+    
+    .faq-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    
+    .faq-header h1 {
+      font-size: 2.5rem;
+      color: #333;
+    }
+
+    .faq-header p {
+      font-size: 1.2rem;
+      color: #666;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      margin-bottom: 30px;
+    }
+    
+    .faq-question {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #333;
+      cursor: pointer;
+      padding: 15px;
+      background-color: #e5f2f8;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    .faq-question:hover {
+      background-color: #cfe9f1;
+    }
+
+    .faq-answer {
+      display: none;
+      font-size: 1.1rem;
+      color: #555;
+      padding: 20px;
+      background-color: #f4f9fb;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    /* Active State for Open FAQ */
+    .active .faq-answer {
+      display: block;
+    }
+
+    .faq-answer ul {
+      padding-left: 20px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .faq-header h1 {
+        font-size: 2rem;
+      }
+
+      .faq-question {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FAQ Section -->
+  <div class="faq-container">
+    <div class="faq-header">
+      <h1>Frequently Asked Questions (FAQ)</h1>
+      <p>Find answers to the most common questions about the RakshaSutra Incident Response Playbook.</p>
+    </div>
+
+    <!-- FAQ Items -->
+    <div class="faq-section">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(0)">
+          What is RakshaSutra Incident Response Playbook?
+        </div>
+        <div class="faq-answer">
+          RakshaSutra is a comprehensive incident response playbook designed to guide professionals through various cybersecurity incident scenarios. It provides detailed playbooks for threat detection, response, and resolution for common incidents like malware, phishing, DDoS, and more.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-section">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(1)">
+          Who can use RakshaSutra Incident Response Playbook?
+        </div>
+        <div class="faq-answer">
+          RakshaSutra is designed for cybersecurity professionals who are familiar with incident response strategies. It’s a valuable resource for organizations looking to strengthen their security posture and improve their response to cybersecurity threats.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-section">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(2)">
+          How do I navigate through the playbooks?
+        </div>
+        <div class="faq-answer">
+          You can easily navigate through the playbooks using the search bar or by browsing through categorized topics in the dashboard. Each playbook includes a step-by-step guide, and you can click on the titles for more details on specific incidents and solutions.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-section">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(3)">
+          Can I submit a new playbook or incident response guide?
+        </div>
+        <div class="faq-answer">
+          Currently, you cannot submit new playbooks directly. However, you can contribute new mitigation steps or solutions to existing incidents by using the submission feature in the platform. Our team will review and integrate these suggestions in future updates.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-section">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(4)">
+          Is there a mobile version of RakshaSutra Incident Response Playbook?
+        </div>
+        <div class="faq-answer">
+          Currently, RakshaSutra is optimized for desktop use. However, we are working on a mobile version to provide easier access to incident response playbooks while on the go.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-section">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFAQ(5)">
+          How do I get support if I need help with the playbook?
+        </div>
+        <div class="faq-answer">
+          You can contact our support team via email at <a href="mailto:support@rakshasutra.com">support@rakshasutra.com</a>. Additionally, you can check out our help center for troubleshooting guides and resources.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- JavaScript to Toggle FAQ Answers -->
+  <script>
+    function toggleFAQ(index) {
+      const faqItems = document.querySelectorAll('.faq-item');
+      faqItems[index].classList.toggle('active');
+    }
+  </script>
+</body>
+</html>

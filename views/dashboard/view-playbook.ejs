@@ -1,0 +1,75 @@
+<div class="container-fluid container-fluid-custom pb-5 mb-5">
+
+    <!-- Breadcrumb and Header Section -->
+    <div class="row mb-4">
+        <div class="col">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item active"><%= playbook.title %></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col d-flex justify-content-between align-items-center">
+            <h1 class="h3 text-primary">Incident Response Playbook</h1>
+            <button type="button" class="btn btn-danger" id="deleteButton" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                Delete Playbook
+            </button>
+        </div>
+    </div>
+
+    <!-- Playbook Form -->
+    <form action="/dashboard/item/<%= playbookID %>?_method=PUT" method="POST" class="border rounded p-4 bg-light shadow-sm">
+        <div class="form-group mb-4">
+            <label for="title" class="form-label fw-bold">Playbook Title</label>
+            <input type="text" class="form-control fs-5 border-primary" id="title" name="title" 
+                value="<%= playbook.title %>" 
+                placeholder="Playbook Title (e.g., Ransomware Response)">
+        </div>
+
+        <div class="form-group mb-4">
+            <label for="body" class="form-label fw-bold">Playbook Details</label>
+            <textarea class="form-control fs-6 border-primary" id="body" name="body" rows="10" 
+                placeholder="Document the incident response process, including detection, containment, eradication, recovery, and lessons learned...">
+                <%= playbook.body %>
+            </textarea>
+        </div>
+
+        <div class="form-group text-end">
+            <button type="submit" class="btn btn-primary btn-lg">Update Playbook</button>
+        </div>
+    </form>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="deleteModalLabel">Confirm Playbook Deletion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="mb-0">
+                    Are you sure you want to permanently delete the playbook 
+                    <span class="text-success"><%= playbook.title %></span>?<br>
+                    <small class="text-danger">This action cannot be undone.</small>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form action="/dashboard/item-delete/<%= playbookID %>?_method=DELETE" method="POST" class="position-relative">
+                    <button type="submit" class="btn btn-danger">Delete Playbook</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+</div>

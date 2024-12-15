@@ -1,0 +1,65 @@
+<style>
+  .nav-link-black {
+    color: black;
+    transition: color 0.3s ease; /* Smooth transition */
+  }
+  .nav-link-black:hover {
+    color: rgb(240, 237, 194);
+  }
+</style>
+
+<div class="container-fluid">
+  <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4">
+    <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-primary text-decoration-none fw-bold fs-2 custom-logo" style="font-family: 'Monospace';">
+      <!-- Add logo image here -->
+      <img src="/img/screenshot.png" alt="RakshaSutraX Logo" style="height: 40px; margin-right: 10px;">
+      RakshaSutraX
+    </a>
+
+    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+      <li><a href="/" class="nav-link px-2 nav-link-black">Home</a></li>
+      <li><a href="/#Features" class="nav-link px-2 nav-link-black">Features</a></li>
+   <!--   <li><a href="#" class="nav-link px-2 nav-link-black">FAQs</a></li> -->
+      <li><a href="/about" class="nav-link px-2 nav-link-black">About</a></li>
+    </ul>
+
+    <div class="col-md-3 text-end">
+      <a href="/auth/google" type="button" class="btn btn-outline-primary me-2">Sign-Up</a>
+      <a href="/auth/google" type="button" class="btn btn-primary">Sign-In</a>
+    </div>
+  </header>
+</div>
+
+
+<style>
+
+
+.nav-link-black {
+  color: black;
+  position: relative; /* Ensures the pseudo-element is positioned correctly */
+  transition: color 0.3s ease; /* Smooth transition for the text color */
+}
+
+.nav-link-black:hover {
+  color: rgb(240, 237, 194); /* Change text color on hover */
+}
+
+.nav-link-black::after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: -2px; /* Adjust as needed to position the underline */
+  left: 0;
+  width: 0;
+  height: 2px; /* Adjust the height as needed */
+  background-color: rgb(240, 237, 194); /* Color of the underline */
+  transition: width 0.3s ease; /* Smooth transition for the underline */
+}
+
+.nav-link-black:hover::after {
+  width: 100%; /* Expands the underline to full width on hover */
+}
+
+</style>
+
+

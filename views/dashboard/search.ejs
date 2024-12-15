@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Results</title>
+  <style>
+    /* Main Wrapper to enable sticky footer */
+    .main-wrapper {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh; /* Full height of the viewport */
+    }
+
+    /* Content container to take available space */
+    .container-fluid-custom {
+      flex: 1; /* Makes the container stretch to push the footer down */
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    /* Search Results Header */
+    .search-results-header {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .search-results-header h2 {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .search-results-header .lead {
+      font-size: 1.2rem;
+      color: #000;
+    }
+
+    /* Playbook List Container */
+    .playbook-list-container {
+      display: block; /* Vertical list layout */
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    /* Playbook Item Styling */
+    .playbook-item {
+      margin-bottom: 20px; /* Vertical spacing */
+      width: 100%;
+    }
+
+    /* Even and Odd Row Color */
+    .playbook-item.even .playbook-card {
+      background-color: #f0f7ff; /* Light Blue for Even Rows */
+    }
+
+    .playbook-item.odd .playbook-card {
+      background-color: #e8f9e8; /* Light Green for Odd Rows */
+    }
+
+    /* Playbook Card Styling */
+    .playbook-card {
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: block; /* Ensure cards take full width */
+    }
+
+    /* Ripped Edge Effect */
+    .playbook-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('https://www.transparenttextures.com/patterns/paper-bag-200.png'); /* Ripped paper texture */
+      background-size: 100%;
+      opacity: 0.1;
+      z-index: 1;
+    }
+
+    .playbook-title {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #333;
+      z-index: 2;
+    }
+
+    /* Hover Effects */
+    .playbook-card:hover {
+      transform: translateY(-10px) rotate(1deg); /* Slight rotation and lift */
+      box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .playbook-card:hover .playbook-title {
+      color: #fff;
+      background-color: #62b2c3;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+    /* Playbook Card Link (Ensuring full clickable card) */
+    .playbook-card-link {
+      text-decoration: none;
+    }
+
+    /* No Results Message */
+    .no-results-message {
+      padding: 10px; /* Reduced padding */
+      background-color: #857b610a; /* Lighter background */
+      color: #333;
+      font-size: 1rem; /* Standardize font size */
+      font-weight: bold;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+    }
+
+    .no-results-message p {
+      margin: 10px 0;
+    }
+
+    /* Image style when no results are found */
+    .no-results-message img {
+      max-width: 800px; /* Reduced image size */
+      height: auto; /* Maintain aspect ratio */
+      border: 3px solid #333; /* Optional border around the image */
+      border-radius: 10px; /* Optional rounded corners */
+      object-fit: cover; /* Ensure proper fitting of the image */
+    }
+
+    /* Footer Styling */
+    .footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px 0;
+      position: relative;
+      bottom: 0;
+      width: 100%; /* Ensure it spans the full width */
+      margin-top: auto; /* Push the footer to the bottom */
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .playbook-item {
+        width: 100%; /* Full width for each card */
+      }
+    }
+
+    @media (max-width: 768px) {
+      .playbook-item {
+        width: 100%; /* Full width for each card on mobile */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-wrapper">
+    <!-- Content -->
+    <div class="container-fluid container-fluid-custom pb-5 mb-5">
+      <!-- Search Results Header -->
+      <div class="search-results-header text-center mb-5">
+        <h2>Search Results: Incident Response Playbooks</h2>
+        <p class="lead">Browse and explore actionable playbooks to enhance your incident response strategies.</p>
+      </div>
+
+      <div class="row">
+        <% if (searchResults && searchResults.length > 0) { %>
+          <div class="col-12">
+            <div class="playbook-list-container">
+              <% searchResults.forEach(function (playbook, index) { %>
+                <div class="playbook-item <%= index % 2 === 0 ? 'even' : 'odd' %>">
+                  <a href="/dashboard/item/<%= playbook._id %>" class="playbook-card-link">
+                    <div class="playbook-card">
+                      <h4 class="playbook-title"><%= playbook.title %></h4>
+                    </div>
+                  </a>
+                </div>
+              <% }) %>
+            </div>
+          </div>
+        <% } else { %>
+          <div class="col-12 text-center no-results-message">
+            <p><img src="/img/noplaybook.jpg" alt="No Playbooks Found"></p>
+          </div>
+        <% } %>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2024 Your Company. All rights reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>
