@@ -86,8 +86,55 @@ Access the Interface:
 
        http://localhost:5000
 
-FOLDER STRUCTURE 📂       
+TECHNOLOGIES USED 🖥️
 
+Frontend 🌐
+
+    EJS: Templating engine for dynamic HTML rendering. 🖼️
+    CSS: For styling the application and ensuring responsive UI. 🎨
+
+Backend 🔧
+
+    Node.js: JavaScript runtime for server-side logic. 🟩
+    Express.js: Lightweight web framework for handling routes and middleware. ⚡
+
+Database 🗂️
+
+    MongoDB: NoSQL database for storing user data, sessions, and playbooks. 🍃
+    Mongoose: MongoDB ODM for schema-based interaction. 📜
+
+Authentication 🔑
+
+    Passport.js: Middleware for implementing Google OAuth 2.0 authentication.🛡️
+
+Environment Management 🌍
+
+    dotenv: Securely manage environment variables like API keys. 🔒
+
+Session Management 🧑‍💻
+
+    connect-mongo: Store session data in MongoDB. 🔗
+
+Utilities 🛠️
+
+    Nodemon: Automatically restarts the server during development. 🔄
+    method-override: Allows HTTP PUT/DELETE requests from forms. 📨  
+
+
+CONTRIBUTING 🤝
+
+Contributions are welcome!
+
+    Fork the repository.
+    Create a new branch (feature/your-feature-name).
+    Commit your changes and open a pull request.
+
+
+Author ✍️
+
+    RaptorX07
+    RakshaSutra Team
+    For queries or support, reach out at: rattube07@example.com.
      
 
 
